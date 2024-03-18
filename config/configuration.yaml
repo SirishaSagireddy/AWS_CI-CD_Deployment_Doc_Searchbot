@@ -1,0 +1,38 @@
+# Pinecone Vector Database
+index_name : "chatbot"
+index_dim1 : 384 # hugging face sentence transformer embeddings size
+index_dim2 : 768 # gemmini pro embeddings size
+index_metric : "cosine" # semantic search
+
+# Chroma DB Vector Database
+chroma_db_dir : 'chroma_db/'
+default_chroma : 'langchain'
+
+k : 3 # return top2 most similar text chunk
+
+# flask
+data_dir : "data/" # uploaded files saved at directory
+
+# text processing
+chunk_size : 500
+chunk_overlap : 100
+
+# Llama2
+max_new_tokens : 5000
+temperature : 0.2
+embeddings1 : "sentence-transformers/all-MiniLM-L6-v2"
+model1_path : "model/llama-2-13b-chat.ggmlv3.q5_1.bin"
+
+# Gemini-pro
+embeddings2 : "models/embedding-001"
+model2_path : "gemini-pro"
+
+# logger
+logger_path: "logging/logger.log"
+
+
+# which model to be used
+model : "gemini_pro" # "llama2"
+
+# which vector database to be used
+vector_database : 'pinecone' # 'pinecone'

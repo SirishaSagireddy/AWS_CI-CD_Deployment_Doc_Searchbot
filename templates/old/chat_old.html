@@ -1,0 +1,132 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chatbot</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="static/style.css">
+
+	</head>
+	
+	
+	<body>
+		<!-- <nav> -->
+			<!-- <h1 style="color: whitesmoke; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"> -->
+			<!-- <img src="static/logo.png" alt="Logo" style="width: 100px; height: 100px; vertical-align: middle; margin-right: 10px; padding: 20px; border-radius: 20px; "> -->
+				<!-- Spsoft -->
+			<!-- </h1> -->
+
+		<!-- </nav> -->
+
+		<nav class="navbar navbar-expand-lg sticky-top bg-transparent">
+			<div class="container-fluid">
+			  <a class="navbar-brand " href="#">
+				<img src="static/logo.png" alt="Logo" width="50" height="50"  style="border-radius: 50%;">
+			  </a>
+			  <li class="nav-item mx-auto fs-4 list-unstyled" style="color: whitesmoke; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" >
+				Document Search Bot
+			  </li>
+			</div>
+		  </nav>
+		<div class="container-fluid  pb-5 bg postition-relative" >
+			
+				
+			
+			
+			
+			<!-- Button trigger modal -->
+			<div class="position-absolute" style="top:90%;right: 6%; bottom: 0%;">
+				<button type="button" class="btn btn-outline-success btn-danger bg-transparent border-0 fs-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					<i class="fa-solid fa-comments"></i> 
+				</button>
+			</div>
+
+
+<!-- Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content bg-transparent">
+						<div class="modal-header border-0">
+							<button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div class="row w-100  ">
+								<div class="col-12 chat p-0">
+									<div class="card">
+										<div class="card-header msg_head py-2">
+											<div class="d-flex bd-highlight">
+												<div class="img_cont">
+													<!-- <img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img"> -->
+													<img src="https://cdn4.iconfinder.com/data/icons/business-and-office-circle-flat-shadow-vol-4/100/document__file__search__page__find-512.png"
+														class="rounded-circle user_img" height="100" width="100">
+													<span class="online_icon"></span>
+												</div>
+												<div class="user_info">
+													<h5 style="color: aliceblue;">Ask me anything!</h5>
+													<!-- <span>Medical Chatbot</span> -->
+												</div>
+											</div>
+										</div>
+										<div id="messageFormeight" class="card-body msg_card_body">
+
+
+										</div>
+										<div class="card-footer" py-5>
+											<form id="messageArea" class="input-group">
+												<input type="text" id="text" name="msg" placeholder="Type your message..."
+													autocomplete="off" class="form-control type_msg" required />
+												<div class="input-group-append">
+													<button type="submit" id="send" class="input-group-text send_btn"><i
+															class="fas fa-location-arrow"></i></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$(document).ready(function() {
+				$("#messageArea").on("submit", function(event) {
+					const date = new Date();					const hour = date.getHours();
+					const minute = date.getMinutes();
+					const str_time = hour+":"+minute;
+					var rawText = $("#text").val();
+
+					var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">'+ str_time + '</span></div><div class="img_cont_msg"><i class="fa-solid fa-user text-success fs-5"></i></div></div>';
+					
+					$("#text").val("");
+					$("#messageFormeight").append(userHtml);
+
+					$.ajax({
+						data: {
+							msg: rawText,	
+						},
+						type: "POST",
+						url: "/get",
+					}).done(function(data) {
+						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://cdn4.iconfinder.com/data/icons/business-and-office-circle-flat-shadow-vol-4/100/document__file__search__page__find-512.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
+						$("#messageFormeight").append($.parseHTML(botHtml));
+					});
+					event.preventDefault();
+				});
+			});
+		</script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>

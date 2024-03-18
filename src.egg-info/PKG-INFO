@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: src
+Version: 0.0.0
+Summary: A small python package for medical chatbot app
+Home-page: https://github.com/Naveed513/End-to-End-Medical-Chatbot-using-Llama2
+Author: Naveed513
+Author-email: sknaveed513@gmail.com
+Project-URL: Bug Tracker, https://github.com/Naveed513/End-to-End-Medical-Chatbot-using-Llama2/issues
+License-File: LICENSE
+
+# End-to-End-Medical-Chatbot-using-Llama2
+
+### Reference Notebook Repo
+```bash
+Notebook Project repo: https://github.com/Naveed513/Notebook_Medical_Chatbot_using_Llama2
+```
+
+### Step 01- Creating new environment with name mchatbot
+```bash
+conda create -n mchatbot python=3.9 -y
+```
+
+### Step 02- Activating Environment
+```bash
+conda activate mchatbot
+```
+
+### Step 03- Installing requirements
+```bash
+pip install -r requirements.txt
+```
+
+### Step 04- Create a .env file in the root directory and add your Pinecone credentials as follows:
+
+```int
+PINECONE_API_KEY = "XXXXXXXXXXXXXXXXX"
+PINECONE_API_ENV = "XXXXXXXXXXXXXXXXX"
+```
+
+### Step 05- ADD Gemini Pro credentials as follows to use it:
+```int
+GOOGLE_API_KEY = "XXXXXXXXXXXXXXXXX"
+```
+
+### Step 06- Download the quantized model using the file downloading_llama2.ipynb in model directory
+
+```int
+After donwloading save the Llama2 bin file in model directory.
+```
+
+### Step 07- Tune the configuration.yaml in config dir:
+```int
+# Pinecone Vector Database
+index_name : "chatbot"
+index_dim1 : 384 # hugging face sentence transformer embeddings size
+index_dim2 : 768 # gemmini pro embeddings size
+index_metric : "cosine" # semantic search
+
+# Chroma DB Vector Database
+chroma_db_dir : 'chroma_db/' # To store the chroma_db collection
+default_chroma : 'langchain' # collection name
+
+k : 3 # return top2 most similar text chunk
+
+# flask
+data_dir : "data/" # uploaded files saved at directory
+
+# text processing
+chunk_size : 500
+chunk_overlap : 100
+
+# Llama2
+max_new_tokens : 5000 # output threshold
+temperature : 0.2 # Increase the value for more randomness
+embeddings1 : "sentence-transformers/all-MiniLM-L6-v2"
+model1_path : "model/llama-2-13b-chat.ggmlv3.q5_1.bin"
+
+# Gemini-pro
+embeddings2 : "models/embedding-001"
+model2_path : "gemini-pro"
+
+# logger
+logger_path: "logging/logger.log"
+
+
+# which model to be used
+model : "llama2" # "gemini_pro"
+
+# which vector database to be used
+vector_database : 'chroma_db' # 'pinecone'
+```
+
+### Step 08- Run app.py
+```int
+python app.py
+```
+
+
+### Techstack Used:
+
+- Python
+- LangChain
+- Flask
+- Meta Llama2
+- Pinecone
+- ChromaDB
+- Google Gemini-Pro

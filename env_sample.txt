@@ -1,0 +1,6 @@
+Step1: Create a file with name--> .env 
+Step2: Add the below field details if you want to connect to Pinecone and GeminiPro
+PINECONE_API_KEY = 
+PINECONE_API_ENV = 
+GOOGLE_API_KEY = 
+Step3: Creating .env file completed
