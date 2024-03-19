@@ -6,4 +6,4 @@ WORKDIR /app
 COPY . /app
 RUN pip install -r requirements.txt
 
-CMd {"python3", "app.py"}
+CMd ["python3", "app.py"]
